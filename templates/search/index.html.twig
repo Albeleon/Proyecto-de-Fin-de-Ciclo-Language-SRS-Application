@@ -1,0 +1,27 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - Search Vocabulary{% endblock %}
+
+{% block body %}
+
+<div id="main-body">
+    
+    {% for significado in significados %}
+        <div class="overflow border-between">
+            <div class="overflow">
+                <form class="float-start" action="/addSRSVocabulary" method="POST">
+                    <input type="hidden" name="targetText" id="targetText" value="{% for objetivo in significado.sinonimosObjetivos %}{% if objetivo != significado.sinonimosObjetivos[0] %}, {% endif %}{{ objetivo }}{% endfor %}">
+                    <input type="hidden" name="nativeText" id="nativeText" value="{% for nativo in significado.sinonimosNativos %}{% if nativo != significado.sinonimosNativos[0] %}, {% endif %}{{ nativo }}{% endfor %}">
+                    <input type="hidden" name="meaning" id="meaning" value="{{ significado.significado }}">
+                    <input class="m-2 btn btn-primary" type="submit" value="+">
+                </form>
+                <div class="float-start">
+                    <p class="p-0 m-0"><strong>{{ idiomaObjetivo.language_name | capitalize }}:</strong> {% for objetivo in significado.sinonimosObjetivos %}{% if objetivo != significado.sinonimosObjetivos[0] %}, {% endif %}{{ objetivo }}{% endfor %}</p>
+                    <p class="p-0 m-0"><strong>{{ idiomaNativo.language_name | capitalize }}:</strong> {% for nativo in significado.sinonimosNativos %}{% if nativo != significado.sinonimosNativos[0] %}, {% endif %}{{ nativo }}{% endfor %}</p>
+                </div>
+            </div>
+            <p><strong>Meaning:</strong> {{ significado.significado }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

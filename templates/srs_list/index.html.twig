@@ -1,0 +1,47 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - SRS List{% endblock %}
+
+{% block body %}
+<div id="main-body">
+    <a href="/addSRS" class="m-2 btn btn-primary">+</a>
+    {% for srs in srss %}
+        <div class="overflow">
+            <button type="button" class="m-2 float-start btn btn-primary" data-bs-toggle="modal" data-bs-target="#delete{{ srs['id'] }}">
+                X
+            </button>
+            
+            <div class="modal fade" id="delete{{ srs['id'] }}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel{{ srs['id'] }}" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel{{ srs['id'] }}">Delete "{{ srs['nombre'] }}"</h5>
+                            <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            Are you sure you want to delete this SRS? All its content will be lost.
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <form action="/SRSDelete" method="POST">
+                                <input type="hidden" name="srs" id="srs" value="{{ srs['id'] }}">
+                                <input type="submit" class="m-2 btn btn-primary" value="Delete">
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <p class="m-3 float-start">{{ srs["count"] }} palabras</p>
+            <p class="m-3 float-start"><strong>{{ srs["nombre"] }}</strong> ({{ srs["idiomaObjetivo"].language_name | capitalize }} -> {{ srs["idiomaNativo"].language_name | capitalize }})</p>
+            {% if currentSRS | default(null) and srs['id'] == currentSRS.getId() %}
+                <a class="m-2 float-start btn btn-secondary disabled">Activo</a>
+            {% else %}
+                <a href="/changeSRS?srs={{ srs['id'] }}" class="m-2 float-start btn btn-primary">Seleccionar</a>
+            {% endif %}
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

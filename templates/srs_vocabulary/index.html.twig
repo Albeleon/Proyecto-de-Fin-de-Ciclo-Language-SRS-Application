@@ -1,0 +1,38 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - SRS Vocabulary List{% endblock %}
+
+{% block body %}
+
+<div id="main-body">
+    <div class="overflow border-between">
+        <a href="/addSRSVocabulary" class="m-2 btn btn-primary">+</a>
+    </div>
+    {% for vocabulary in vocabularies %}
+        <div class="overflow border-between">
+            <div class="overflow">
+                <p class="float-start my-0 margin-right"><strong>Level:</strong> {{ vocabulary.getNivel() }}</p>
+                <p class="float-start my-0"><strong>Next review:</strong> {{ vocabulary.getFechaProxima() | date("Y/m/d H:i") }}</p>
+            </div>
+            <div class="overflow">
+                
+                <form class="float-start" action="/SRSVocabularyDelete" method="POST">
+                    <input type="hidden" name="vocabulary" id="vocabulary" value="{{ vocabulary.getId() }}">
+                    <input type="submit" class="m-2 btn btn-primary" value="X">
+                </form>
+                
+                <form class="float-start" action="/SRSVocabularyEdit" method="POST">
+                    <input type="hidden" name="vocabulary" id="vocabulary" value="{{ vocabulary.getId() }}">
+                    <input type="submit" class="m-2 btn btn-primary" value="Edit">
+                </form>
+
+                <div class="float-start">
+                    <p class="p-0 m-0"><strong>{{ idiomaObjetivo.language_name | capitalize }}:</strong> {{ vocabulary.getPalabrasObjetivo() }}</p>
+                    <p class="p-0 m-0"><strong>{{ idiomaNativo.language_name | capitalize }}:</strong> {{ vocabulary.getPalabrasOrigen() }}</p>
+                </div>
+            </div>
+            <p><strong>Meaning:</strong> {{ vocabulary.getDescripcion() }}</p>
+        </div>
+    {% endfor %}
+</div>
+{% endblock %}

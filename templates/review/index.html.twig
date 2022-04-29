@@ -1,0 +1,36 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - Review{% endblock %}
+
+{% block script %}
+<script>
+var infoData = {{ words | json_encode | raw }};
+</script>
+<script src="js/review.js"></script>
+{% endblock %}
+
+{% block body %}
+
+<div id="main-body">
+    <div id="loading">...</div>
+    <div id="loaded" class="text-center" style="display: none">
+
+        <h3 class="text-end" id="mainData" data-words="{{ words | json_encode | escape ('html_attr') }}">Words reviewed (<span id="currentCounter">0</span> / {{ numero }})</h1>
+        <h2 id="problem">Target language words</h2>
+
+        <button class="m-3 btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Read Meaning
+        </button>
+        <div class="collapse m-3" id="collapseExample">
+            <div id="description">
+                Description to help if you want.
+            </div>
+        </div>
+        
+        <div class="form-group">
+            <input class="form-control text-center" type="text" id="input" placeholder="Write a possible solution">
+        </div>
+        <button class="m-3 btn btn-primary" id="button">Review</button>
+    </div>
+</div>
+{% endblock %}

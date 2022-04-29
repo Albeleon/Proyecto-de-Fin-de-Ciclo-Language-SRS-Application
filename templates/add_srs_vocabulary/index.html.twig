@@ -1,0 +1,44 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - Add Vocabulary{% endblock %}
+
+{% block body %}
+<div id="main-body">
+    <form action="/addingSRSVocabulary" method="post">
+        <h2>Create SRS Vocabulary</h2>
+        <div class="form-group">
+            <label for="nombre">{{ idiomaObjetivo.language_name | capitalize }}:</label>
+            <input class="form-control" type="text" name="targetText" id="targetText" value="{{ targetText }}">
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">{{ idiomaNativo.language_name | capitalize }}:</label>
+            <input class="form-control" type="text" name="nativeText" id="nativeText" value="{{ nativeText }}">
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">Meaning:</label>
+            <textarea class="form-control" name="meaning" id="meaning" rows="4">{{ meaning }}</textarea>
+        </div>
+
+
+        <div class="form-group">
+            <label for="nivel">Level: </label>
+            <select class="form-control" id="nivel" name="nivel">
+                <option value="1">Level 1 (4 hours)</option>
+                <option value="2">Level 2 (8 hours)</option>
+                <option value="3">Level 3 (1 day)</option>
+                <option value="4">Level 4 (2 days)</option>
+                <option value="5">Level 5 (1 week)</option>
+                <option value="6">Level 6 (2 weeks)</option>
+                <option value="7">Level 7 (1 month)</option>
+                <option value="8">Level 8 (4 months)</option>
+                <option value="9">Level 9 (never)</option>
+            </select>
+        </div>
+        
+        <input class="btn btn-primary" type="submit" value="Add to the SRS">
+    </form>
+</div>
+
+{% endblock %}

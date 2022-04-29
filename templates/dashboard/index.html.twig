@@ -1,0 +1,61 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - Dashboard{% endblock %}
+
+{% block body %}
+<div>
+    <ul class="nav nav-tabs">
+        {% for otherSRS in SRSs %}
+            <li class="nav-item">
+                {% if otherSRS == SRS %}
+                    <a class="nav-link active active-tab" aria-current="page"">{{ otherSRS.getNombre() }}</a>
+                {% else %}
+                    <a class="nav-link" href="/changeSRS?srs={{ otherSRS.getId() }}">{{ otherSRS.getNombre() }}</a>
+                {% endif %}
+            </li>
+        {% endfor %}
+        <li class="nav-item">
+            <a class="nav-link" href="/addSRS">+</a>
+        </li>
+    </ul>
+    <div id="main-body">
+        <div class="overflow">
+            <h2 class="float-md-start">{{ SRS.getNombre() }} ({{ idiomaObjetivo.language_name | capitalize }}-> {{ idiomaNativo.language_name | capitalize }})</h2>
+            <div class="text-center float-md-end">
+                <a class="m-2 btn btn-primary" href="/SRSVocabulary">SRS vocabulary list</a>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-3 text-center">
+                {% if numero == 0 %} 
+                <a type="button" class="btn btn-secondary btn-lg">
+                    <p id="number">{{ numero }}</p>
+                    <p id="text">reviews available</p>
+                </a>
+                {% else %}
+                    <a href="/review" type="button" class="btn btn-primary">
+                        <p id="number">{{ numero }}</p>
+                        <p id="text">reviews available</p>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="col-md-9">
+                <ul class="bar-row">
+                    {% for hour in listHours %}
+                        <li>
+                            <p>{{ hour["hour"] }}</p>
+                            <p>{{ hour["count"] }}</p>
+                            <div class="outside-bar">
+                                <div class="bar" style="width: {{ hour['height'] }}%"></div>
+                            </div>
+                            
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+</div>
+{% endblock %}

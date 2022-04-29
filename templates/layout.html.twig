@@ -1,0 +1,76 @@
+{% extends "base.html.twig" %}
+
+{% block layout %}
+    <header>
+        <div class="overflow container">
+            <a class="overflow" href="/"><figure>
+                <img src="images/language.png" alt="">
+                <figcaption>
+                    <h1>Language SRS Application</h1>
+                    <p>Spaced Repetition System-based Application</p>
+                </figcaption>
+            </figure></a>
+            <nav class="overflow navbar navbar-light row">
+                {% if user | default(null) %}
+                    <div class="container-fluid col-xl-4">
+                        <form action="/search" method="get" class="align-top d-md-flex">
+                            <input name="targetWord" id="targetWord" class="form-control me-2" type="search" placeholder="{{ idiomaObjetivo.language_name | capitalize }}" aria-label="Search">
+                            <input name="nativeWord" id="nativeWord" class="form-control me-2" type="search" placeholder="{{ idiomaNativo.language_name | capitalize }}" aria-label="Search">
+                            <button class="btn btn-outline-success" type="submit">Search</button>
+                        </form>
+                    </div>
+                {% endif %}
+                <ul class="navbar-nav col-xl-8 text-center text-xl-end">
+                    <div>
+                        {% if user | default(null) %}
+                            <li class="nav-item float-md-start float-xl-end">
+                                <a class="nav-link" href="/logout">Logout</a>
+                            </li>
+                            <li class="nav-item float-md-start float-xl-end">
+                                <a class="nav-link" href="/settings">Settings</a>
+                            </li>
+                            <li class="nav-item float-md-start float-xl-end">
+                                <a class="nav-link" href="/SRSList">SRS</a>
+                            </li>
+                            <li class="nav-item float-md-start float-xl-end">
+                                <a class="nav-link" href="/dashboard">Dashboard</a>
+                            </li>
+                            <li class="nav-item float-md-start float-xl-end">
+                                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">{{ user.getEmail() }}</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item float-md-start">
+                                <a class="nav-link" href="/login">Login</a>
+                            </li>
+                            <li class="nav-item float-md-start">
+                                <a class="nav-link" href="/register">Register</a>
+                            </li>
+                        {% endif %}
+                    </div>
+                </ul>
+                
+            </nav>
+        </div>
+        
+    </header>
+    <div id="outside-body" class="container">
+        {% block body %} {% endblock %}
+    </div>
+    <footer>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <ul class="row">
+                        <li class="col-md-3">About</li>
+                        <li class="col-md-3">How to start</li>
+                        <li class="col-md-3">FAQ</li>
+                        <li class="col-md-3">Contact</li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <p>Copyright © Alberto León Meaños </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+{% endblock %}

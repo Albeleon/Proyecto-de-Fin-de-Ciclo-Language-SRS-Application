@@ -1,0 +1,50 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - Edit SRS Vocabulary{% endblock %}
+
+{% block body %}
+<div id="main-body">
+    <form action="/editingSRSVocabulary" method="post">
+        <h2>Edit SRS Vocabulary</h2>
+        <input type="hidden" id="id" name="id" value="{{ vocabulary.getId() }}">
+        <div class="form-group">
+            <label for="nombre">{{ idiomaObjetivo.language_name | capitalize }}</label>
+            <input class="form-control" type="text" name="targetText" id="targetText" value="{{ vocabulary.getPalabrasObjetivo() }}">
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">{{ idiomaNativo.language_name | capitalize }}</label>
+            <input class="form-control" type="text" name="nativeText" id="nativeText" value="{{ vocabulary.getPalabrasOrigen() }}">
+        </div>
+
+        <div class="form-group">
+            <label for="nombre">{{ idiomaObjetivo.language_name | capitalize }}</label>
+            <textarea class="form-control" name="meaning" id="meaning" rows="4">{{ vocabulary.getDescripcion() }}</textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="nivel">Level: </label>
+            <select class="form-control" id="nivel" name="nivel">
+                <option value="1" {% if vocabulary.getNivel() == 1 %}selected{% endif %}>Level 1 (4 hours)</option>
+                <option value="2" {% if vocabulary.getNivel() == 2 %}selected{% endif %}>Level 2 (8 hours)</option>
+                <option value="3" {% if vocabulary.getNivel() == 3 %}selected{% endif %}>Level 3 (1 day)</option>
+                <option value="4" {% if vocabulary.getNivel() == 4 %}selected{% endif %}>Level 4 (2 days)</option>
+                <option value="5" {% if vocabulary.getNivel() == 5 %}selected{% endif %}>Level 5 (1 week)</option>
+                <option value="6" {% if vocabulary.getNivel() == 6 %}selected{% endif %}>Level 6 (2 weeks)</option>
+                <option value="7" {% if vocabulary.getNivel() == 7 %}selected{% endif %}>Level 7 (1 month)</option>
+                <option value="8" {% if vocabulary.getNivel() == 8 %}selected{% endif %}>Level 8 (4 months)</option>
+                <option value="9" {% if vocabulary.getNivel() == 9 %}selected{% endif %}>Level 9 (never)</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label for="date">Date: </label>
+            <input class="form-control" type="datetime" name="date" id="date" value="{{ vocabulary.getFechaProxima() | date("Y/m/d H:i") }}" pattern="\d{1,4}/\d{1,2}/\d{1,2}\s\d{1,2}:\d{2}">
+            
+        </div>
+        
+        <input class="btn btn-primary" type="submit" value="Edit SRS Vocabulary">
+    </form>
+</div>
+
+{% endblock %}
