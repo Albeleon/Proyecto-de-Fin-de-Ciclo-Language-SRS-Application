@@ -1,0 +1,33 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - How to start{% endblock %}
+
+{% block body %}
+<div id="main-body">
+    <h2>How to start:</h2>
+    <p>To begin with, you have to register as an user with an email and a password. Then you will have to login with that data.</p>
+    <p>When you start, you will automatically be brought to a menu to create a first SRS, not allowing to go to other options until you do this step. You must choose a name, a target language and a native language.</p>
+    <p>Once created, you will be brought to the Dashboard, with that SRS selected. From here on you can:</p>
+    <ul>
+        <li>Go to the SRS List where all the SRS will be listed with their number of vocabulary and an option to delete them, select them or add one.</li>
+        <li>Select a different SRS or create one from the Dashboard.</li>
+        <li>Consult the list of vocabulary, where you can modify, delete or add a new one. Each synonym will be separated by a comma.</li>
+        <li>Search for vocabulary of the two language you have chosen by using the search inputs on the header. It will show a list of the vocabulary with the option to add it to the SRS.</li>
+    </ul>
+    <p>Once you have vocabulary, it will appear in the bars on the Dashboard if the review is in less than 24 hours. The reviews will always be at the minute 0 of each hour. Once the hour comes, the card at the left will change to the number of reviews available to do, and a link to go to the review phase.</p>
+    <p>In the review phase, you will be shown the number of words to review and how many are completed, the current word being shown in the target language, and an input where you should write a synonim in the native language. You can also check the definition of the word if you want to.</p>
+    <p>If you press Enter or click to review, and the input becomes green, it means you were right, and that word won't be asked in this current review process again. If you fail, the input will turn red and will ask for the word in random order again. This process will repeat until all words are reviewed.</p>
+    <p>If you were right without any flaws, that word will be asked later in time than previously; if you were wrong, it will be asked sooner than the last time. The time by which it asks is divided into levels: each word is a level, and when you get it right it will level up, and when you get it wrong it will level down. The levels means once it's reviewed it will ask about the word in the following periods of time:</p>
+    <ul>
+        <li>Level 1: 4 hours later.</li>
+        <li>Level 2: 8 hours later.</li>
+        <li>Level 3: 1 day later.</li>
+        <li>Level 4: 2 days later.</li>
+        <li>Level 5: 1 week later.</li>
+        <li>Level 6: 2 weeks later.</li>
+        <li>Level 7: 1 month later.</li>
+        <li>Level 8: 4 months later.</li>
+        <li>Level 9: 1 year later.</li>
+    </ul>
+</div>
+{% endblock %}

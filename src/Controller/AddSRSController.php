@@ -18,6 +18,19 @@ class AddSRSController extends AbstractController
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         
         $user = $security->getUser();
+        
+        $repository = $this->getDoctrine()->getRepository(LanguageNames::class);
+        $languages = $repository->findLanguages();
+
+        $setSRS = $user->getSRS();
+        if ($setSRS->isEmpty()) {
+            return $this->render('add_srs/index.html.twig', [
+                'controller_name' => 'AddSRSController',
+                'user' => $user,
+                'noSRS' => true,
+                'languages' => $languages
+            ]);
+        }
 
         $session = $request->getSession();
         $session->start();
@@ -26,8 +39,6 @@ class AddSRSController extends AbstractController
         $repository = $this->getDoctrine()->getRepository(SRS::class);
         $srs = $repository->find($srsId);
 
-        $repository = $this->getDoctrine()->getRepository(LanguageNames::class);
-        $languages = $repository->findLanguages();
         
         $repository = $this->getDoctrine()->getRepository(LanguageNames::class);
         $idiomaObjetivo = $repository->findLanguageById($srs->getIdiomaObjetivo()->getLanguageId());

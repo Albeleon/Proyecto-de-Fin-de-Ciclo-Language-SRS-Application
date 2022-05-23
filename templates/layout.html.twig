@@ -11,23 +11,20 @@
                 </figcaption>
             </figure></a>
             <nav class="overflow navbar navbar-light row">
-                {% if user | default(null) %}
-                    <div class="container-fluid col-xl-4">
+                {% if user | default(null) and not noSRS is defined %}
+                    <div class="container-fluid col-xl-6">
                         <form action="/search" method="get" class="align-top d-md-flex">
                             <input name="targetWord" id="targetWord" class="form-control me-2" type="search" placeholder="{{ idiomaObjetivo.language_name | capitalize }}" aria-label="Search">
                             <input name="nativeWord" id="nativeWord" class="form-control me-2" type="search" placeholder="{{ idiomaNativo.language_name | capitalize }}" aria-label="Search">
-                            <button class="btn btn-outline-success" type="submit">Search</button>
+                            <input class="btn btn-outline-success" type="submit" value="Search"></button>
                         </form>
                     </div>
                 {% endif %}
-                <ul class="navbar-nav col-xl-8 text-center text-xl-end">
+                <ul class="navbar-nav col-xl-6 text-center text-xl-end">
                     <div>
                         {% if user | default(null) %}
                             <li class="nav-item float-md-start float-xl-end">
                                 <a class="nav-link" href="/logout">Logout</a>
-                            </li>
-                            <li class="nav-item float-md-start float-xl-end">
-                                <a class="nav-link" href="/settings">Settings</a>
                             </li>
                             <li class="nav-item float-md-start float-xl-end">
                                 <a class="nav-link" href="/SRSList">SRS</a>
@@ -61,10 +58,10 @@
             <div class="row">
                 <div class="col-md-8">
                     <ul class="row">
-                        <li class="col-md-3">About</li>
-                        <li class="col-md-3">How to start</li>
-                        <li class="col-md-3">FAQ</li>
-                        <li class="col-md-3">Contact</li>
+                        <li class="col-md-3"><a href="/about">About</a></li>
+                        <li class="col-md-3"><a href="/HowToStart">How to start</a></li>
+                        <li class="col-md-3"><a href="/FAQ">FAQ</a></li>
+                        <li class="col-md-3"><a href="/contact">Contact</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4">

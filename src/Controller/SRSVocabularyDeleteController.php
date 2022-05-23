@@ -17,9 +17,13 @@ class SRSVocabularyDeleteController extends AbstractController
     {
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
-        if ($request->request-has("vocabulary")) {
+        if ($request->request->has("vocabulary")) {
 
             $user = $security->getUser();
+            $setSRS = $user->getSRS();
+            if ($setSRS->isEmpty()) {
+                return $this->redirectToRoute('app_add_srs');
+            }
 
             $session = $request->getSession();
             $session->start();

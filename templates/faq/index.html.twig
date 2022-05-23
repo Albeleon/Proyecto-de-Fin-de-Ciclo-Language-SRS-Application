@@ -1,0 +1,23 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - FAQ{% endblock %}
+
+{% block body %}
+<div id="main-body">
+    <h2>FAQ (Frequently Asked Questions):</h2>
+    <p class="question">Can I create two SRS with the same target and native language?</p>
+    <p>Yes, it is not limited.</p>
+    <p class="question">When I add a SRS Vocabulary in a level other than level 1, will it ask in 4 hours or in the period of time of that level?</p>
+    <p>When you add, it will ask in 4 hours.</p>
+    <p class="question">Can I modify the date of a SRS Vocabulary?</p>
+    <p>Yes, as long as it respects the date format when you edit a vocabulary.</p>
+    <p class="question">If I stop reviewing in the middle of it, what happens?</p>
+    <p>The words that were already completed will not be asked again. The ones that you were wrong about and didn't complete until the end however will still be considered as if they failed when completed in a next review session and will level down.</p>
+    <p class="question">Can I import the vocabulary from one SRS to another?</p>
+    <p>No, each SRS is independent.</p>
+    <p class="question">Can I search for another language inside the same SRS?</p>
+    <p>No, the idea is that each SRS is conceptually separate from other from different languages so they are not mixed up.</p>
+    <p class="question">Will the consultation of vocabulary be up to date with the API of Omegawiki?</p>
+    <p>No, the content was extracted from a SQL download available in Omegawiki on March from 2022 and stored in a database. The results won't change. It's possible that this web application be migrated to use an API in the future.</p>
+</div>
+{% endblock %}

@@ -32,45 +32,45 @@ class DashboardController extends AbstractController
         if ($setSRS->isEmpty()) {
             return $this->redirectToRoute('app_add_srs');
         }
-        else {
-            $session = $request->getSession();
-            $session->start();
-            
-            $srsId = $session->get('currentSRS');
-            $srs = $setSRS[0];
-            foreach ($setSRS as $partSRS) {
-                if ($partSRS->getId() == $srsId) {
-                    $srs = $partSRS;
-                }
-            }
-            $session->set('currentSRS', $srs->getId());
-            $srsId =  $srs->getId();
-
-            $repository = $this->getDoctrine()->getRepository(SRS::class);
-            $srs = $repository->find($srsId);
         
-            $repository = $this->getDoctrine()->getRepository(SRSVocabulary::class);
-            $words = $repository->findRecentFromSRS($srs);
-            $numero = count($words);
-
-            $listHours = $repository->getVocabularyPerHour($srs);
-
-            $repository = $this->getDoctrine()->getRepository(LanguageNames::class);
-            $idiomaObjetivo = $repository->findLanguageById($srs->getIdiomaObjetivo()->getLanguageId());
-            $idiomaNativo = $repository->findLanguageById($srs->getIdiomaNativo()->getLanguageId());
-
-
-            return $this->render('dashboard/index.html.twig', [
-                'controller_name' => 'DashboardController',
-                'user' => $user,
-                'SRS' => $srs,
-                'idiomaObjetivo' => $idiomaObjetivo,
-                'idiomaNativo' => $idiomaNativo,
-                'SRSs' => $setSRS,
-                'numero' => $numero,
-                'listHours' => $listHours
-            ]);
+        $session = $request->getSession();
+        $session->start();
+        
+        $srsId = $session->get('currentSRS');
+        $srs = $setSRS[0];
+        foreach ($setSRS as $partSRS) {
+            if ($partSRS->getId() == $srsId) {
+                $srs = $partSRS;
+            }
         }
+        $session->set('currentSRS', $srs->getId());
+        $srsId =  $srs->getId();
+
+        $repository = $this->getDoctrine()->getRepository(SRS::class);
+        $srs = $repository->find($srsId);
+    
+        $repository = $this->getDoctrine()->getRepository(SRSVocabulary::class);
+        $words = $repository->findRecentFromSRS($srs);
+        $numero = count($words);
+
+        $listHours = $repository->getVocabularyPerHour($srs);
+
+        $repository = $this->getDoctrine()->getRepository(LanguageNames::class);
+        $idiomaObjetivo = $repository->findLanguageById($srs->getIdiomaObjetivo()->getLanguageId());
+        $idiomaNativo = $repository->findLanguageById($srs->getIdiomaNativo()->getLanguageId());
+
+
+        return $this->render('dashboard/index.html.twig', [
+            'controller_name' => 'DashboardController',
+            'user' => $user,
+            'SRS' => $srs,
+            'idiomaObjetivo' => $idiomaObjetivo,
+            'idiomaNativo' => $idiomaNativo,
+            'SRSs' => $setSRS,
+            'numero' => $numero,
+            'listHours' => $listHours
+        ]);
+        
 
     }
 

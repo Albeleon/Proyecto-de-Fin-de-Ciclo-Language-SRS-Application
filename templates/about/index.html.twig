@@ -1,0 +1,12 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - About{% endblock %}
+
+{% block body %}
+<div id="main-body">
+    <h2>About:</h2>
+    <p>This is a web application that allows for users to create SRS (Spaced-Repetition Systems) for any two languages the user chooses, and search for vocabulary to insert in the SRS to be reviewed periodically.</p>
+    <p>A SRS is a system where concepts of knowledge are asked to the user periodically and the user must answer if they remember the concept or still don't. If they do, the knowledge is considered well based on one's mind, and because it was remembered it will stay in one's memory for longer, so the SRS will ask that concept again later in time, longer than the last amount that asked the last time for that concept. If they don't remember, they need to remember it again, which is why the SRS will ask it again earlier in time. This system is very useful to distribute lots of concepts to learn without overwhelming the learner and make them firm in your memory.</p>
+    <p>This website is made specifically for learning languages, and the concepts are vocabulary, by which the SRS asks in one language (the target language) and the user must respond with the translation in other language (the native language). This website's main appeal is that, based on a database by <a href="http://www.omegawiki.org/">Omegawiki</a>, the user can choose in which two languages the user want to learn. The user can also create multiple SRS for different purposes, each one independent of the others.</p>
+</div>
+{% endblock %}

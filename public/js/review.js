@@ -102,6 +102,7 @@ function shuffle() {
         document.getElementById("description").textContent = item["descripcion"];
         document.getElementById("button").textContent = "Review";
         document.getElementById("button").onclick = review;
+        document.getElementById("input").value = "";
         document.getElementById("input").classList.remove("success");
         document.getElementById("input").classList.remove("failure");
     }

@@ -15,9 +15,14 @@ class SRSDeleteController extends AbstractController
     public function index(Request $request, Security $security): Response
     {
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+        $user = $security->getUser();
+        
+        $setSRS = $user->getSRS();
+        if ($setSRS->isEmpty()) {
+            return $this->redirectToRoute('app_add_srs');
+        }
 
         if ($request->request->has("srs")) {
-            $user = $security->getUser();
 
             $srsId = $request->request->get("srs");
             

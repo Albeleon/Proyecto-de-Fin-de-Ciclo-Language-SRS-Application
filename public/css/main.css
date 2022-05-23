@@ -11,6 +11,10 @@ body {
     justify-content: space-between;
 }
 
+p {
+    text-align: justify;
+}
+
 header {
     background: linear-gradient(to bottom, white, #fef, #edf, #dce);
     margin: 0;
@@ -163,4 +167,8 @@ input.failure {
 
 input.failure:focus {
     background-color: red;
+}
+
+p.question {
+    font-weight: bold;
 }

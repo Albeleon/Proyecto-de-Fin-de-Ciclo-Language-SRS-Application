@@ -18,7 +18,7 @@ class SRSListController extends AbstractController
     public function index(Request $request, Security $security): Response
     {
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
+        
         $user = $security->getUser();
         $setSRS = $user->getSRS();
         if ($setSRS->isEmpty()) {

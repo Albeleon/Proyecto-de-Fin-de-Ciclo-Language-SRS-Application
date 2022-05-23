@@ -20,7 +20,11 @@ class ReviewController extends AbstractController
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
         
         $user = $security->getUser();
-
+        $setSRS = $user->getSRS();
+        if ($setSRS->isEmpty()) {
+            return $this->redirectToRoute('app_add_srs');
+        }
+        
         $session = $request->getSession();
         $session->start();
         $srsId = $session->get('currentSRS');

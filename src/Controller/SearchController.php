@@ -22,8 +22,13 @@ class SearchController extends AbstractController
     public function index(Request $request, Security $security): Response
     {
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
-
         $user = $security->getUser();
+        
+        $setSRS = $user->getSRS();
+        if ($setSRS->isEmpty()) {
+            return $this->redirectToRoute('app_add_srs');
+        }
+        
 
         $session = $request->getSession();
         $session->start();

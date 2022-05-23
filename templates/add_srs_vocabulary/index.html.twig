@@ -8,12 +8,12 @@
         <h2>Create SRS Vocabulary</h2>
         <div class="form-group">
             <label for="nombre">{{ idiomaObjetivo.language_name | capitalize }}:</label>
-            <input class="form-control" type="text" name="targetText" id="targetText" value="{{ targetText }}">
+            <input class="form-control" type="text" name="targetText" id="targetText" value="{{ targetText }}" required>
         </div>
 
         <div class="form-group">
             <label for="nombre">{{ idiomaNativo.language_name | capitalize }}:</label>
-            <input class="form-control" type="text" name="nativeText" id="nativeText" value="{{ nativeText }}">
+            <input class="form-control" type="text" name="nativeText" id="nativeText" value="{{ nativeText }}" required>
         </div>
 
         <div class="form-group">

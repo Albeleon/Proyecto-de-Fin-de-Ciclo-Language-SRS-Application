@@ -22,6 +22,10 @@ class SRSVocabularyEditController extends AbstractController
         if ($request->request->get("vocabulary")) {
 
             $user = $security->getUser();
+            $setSRS = $user->getSRS();
+            if ($setSRS->isEmpty()) {
+                return $this->redirectToRoute('app_add_srs');
+            }
 
             $session = $request->getSession();
             $session->start();
@@ -58,6 +62,7 @@ class SRSVocabularyEditController extends AbstractController
     {
 		$this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
 
+        
         $id = $request->request->get("id");
         $targetText = $request->request->get("targetText");
         $nativeText = $request->request->get("nativeText");

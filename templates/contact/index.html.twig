@@ -1,0 +1,28 @@
+{% extends 'layout.html.twig' %}
+
+{% block title %}Language SRS Application - Contact{% endblock %}
+
+{% block body %}
+<div id="main-body">
+    <form action="/contacting" method="post">
+        <h2>Contact</h2>
+
+        {% if result == "success" %}
+            <p>Operación realizada con éxito.</p>
+        {% elseif result == "failure" %}
+            <p>Hubo un error al enviarlo.</p>
+        {% endif %}
+
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input class="form-control" type="email" name="email" value="{{ userEmail }}" id="email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea class="form-control" name="content" id="content" rows="8"></textarea>
+        </div>
+
+        <button class="m-2 btn btn-lg btn-primary" type="submit">Send</button>
+    </form>
+</div>
+{% endblock %}
